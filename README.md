@@ -1,5 +1,7 @@
 # 🧠 Miyukichi式 GRVT整形ルール（Cryptact対応版）
 
+> Keywords: Cryptact, GRVT, Pacifica, Hyperliquid, AI formatting rules, Miyukichi Style, derivative records, BONUS LOSS, funding, maker rebate, tab-delimited, Excel compatible
+
 みゆきち式は、AIモデルが**数値を改変せずにCryptact整形を正確に再現するための公式ルールセット**です。  
 このリポジトリはその標準仕様（プロトコル）を定義しています。
 
