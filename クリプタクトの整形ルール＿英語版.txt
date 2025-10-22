@@ -1,0 +1,121 @@
+完璧です。あなたの「🧠みゆきち式ルール」はすでに非常に体系的なので、
+これをそのまま**国際的に通じる正確な英語版**として翻訳します。
+Cryptactフォーマット仕様に即した用語（PnL, fee, rebate, funding, realized profit/loss）で統一しました。
+
+---
+
+# 🧠 **Miyukichi Standard for Cryptact Formatting**
+
+**[Complete Integrated Version + Fee-Explicit Edition | Updated Oct 21, 2025]**
+
+---
+
+## 🔹 Common Rules
+
+1. **Read numbers exactly as shown** — no rounding, no interpretation (error tolerance ±0 is strictly prohibited).
+   *Note: Copy what you see. Only add when summing; never “correct” numbers.*
+2. **If both PnL and Fee are 0, skip the row.**
+3. **Sort transactions chronologically (ascending by timestamp).**
+4. **Output format:** No header, tab-delimited (Excel-compatible).
+5. **Set the margin currency accurately for each source.**
+6. **Datetime format:** `YYYY/MM/DD HH:mm:ss`
+
+---
+
+## 💰 **GRVT Rules** (USDT-based Derivatives)
+
+* **Source:** GRVT
+* **Base currency:** USDT
+* **Fee currency:** USDT
+
+### Recording Principles
+
+1. *Realized PnL does **not** include fees.*
+2. *The “Fee” field must be recorded separately as a fee row (LOSS). Never combine with PnL.*
+3. *If Realized PnL > 0 → record as **BONUS** (Realized Profit).*
+   *If Realized PnL < 0 → record as **LOSS** (Realized Loss).*
+4. *If Fee < 0 → record as **BONUS** (Maker Rebate). Quantity = rebate amount. Comment: “Maker Rebate”.*
+5. *If Fee > 0 → record as **LOSS** (Fee Payment). Quantity = fee amount. Comment: “Fee”.*
+6. *Funding reward:*
+
+   * Positive → **BONUS** (“Funding Received”)
+   * Negative → **LOSS** (“Funding Payment”)
+7. *If both PnL = 0 and Fee = 0 → skip the record.*
+8. *Sort all outputs in chronological ascending order.*
+
+---
+
+## 💵 **Pacifica Rules**
+
+* **Source:** Pacifica
+* **Margin currency:** USDC
+* *Realized PnL already includes fees.*
+* *Fee field is always 0.*
+* *Funding reward:* + → BONUS, − → LOSS.
+* *Maker rebate:* Add an extra BONUS row.
+* *If both PnL and Fee are 0 → skip.*
+
+---
+
+## 💎 **Hyperliquid (Hype) Rules**
+
+* **Source:** Hyperliquid
+* **Margin currency:** USDC
+* *Closed PnL already includes fees (final net result).*
+* *Fee field is always 0.*
+* *Funding reward:* + → BONUS, − → LOSS.
+* *Maker rebate:* Add an extra BONUS row.
+* *If both PnL and Fee are 0 → skip.*
+
+---
+
+## 📘 **GRVT Fee Verification Checklist**
+
+(Optional — see separate document.)
+
+---
+
+## 🧾 **Daily Aggregation Rules**
+
+1. The user enters **“0”** to trigger *Formatting Mode.*
+   → AI replies: “Entered Formatting Mode.”
+2. Paste the raw **trade history** of GRVT / Pacifica / Hype directly.
+3. The AI automatically performs:
+
+   * PnL sign check → determine BONUS or LOSS
+   * Fee < 0 → add BONUS (Maker Rebate)
+   * Fee > 0 → add LOSS (Fee Payment)
+   * Skip rows where PnL = 0 and Fee = 0
+4. Finally, output **only the summarized results** for
+   BONUS / LOSS / Rebate / Fee
+   (in Cryptact tab-delimited format, no intermediate data).
+
+---
+
+### ✅ Example Output (GRVT | Fee-Explicit Style)
+
+```
+2025/10/20 23:59:59	BONUS	GRVT	USDT	0.66		JPY	0	USDT	日次 決済利益集計 (2025-10-20)
+2025/10/20 23:59:59	LOSS	GRVT	USDT	0.63		JPY	0	USDT	日次 決済損失集計 (2025-10-20)
+2025/10/20 23:59:59	BONUS	GRVT	USDT	0.05		JPY	0	USDT	日次 Funding Received 集計 (2025-10-20)
+2025/10/20 23:59:59	LOSS	GRVT	USDT	0.03		JPY	0	USDT	日次 Funding Payment 集計 (2025-10-20)
+2025/10/20 18:32:05	BONUS	GRVT	USDT	0.001887	JPY	0	USDT	メイカーリベート 集計 (2025-10-20)
+2025/10/20 23:59:59	LOSS	GRVT	USDT	0.16011		JPY	0	USDT	手数料 集計 (2025-10-20)
+
+---
+
+## 🧩 **Checkpoints (for AI self-verification)**
+
+☑ When **Fee** is negative, a **BONUS (Maker Rebate)** line is added correctly.  
+☑ When **Fee** is positive, a **LOSS (Fee)** line is added correctly.  
+☑ When **Funding** is positive, it is recorded as **BONUS (Funding Received)**.  
+☑ When **Funding** is negative, it is recorded as **LOSS (Funding Payment)**.  
+☑ Rows where both **PnL = 0** and **Fee = 0** are omitted.  
+☑ All entries (**BONUS / LOSS / Rebate / Fee**) are sorted in **chronological (ascending)** order.  
+☑ Daily or period-end summaries output in **6 categories**:  
+  **(1)** Profit, **(2)** Loss, **(3)** Funding Received, **(4)** Funding Payment, **(5)** Maker Rebate, **(6)** Fee.  
+☑ **Categories that do not exist are not shown** — non-existent divisions are omitted (no empty placeholders).  
+
+---
+---
+
